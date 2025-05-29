@@ -15,39 +15,47 @@
     <div class="login-card-wrapper">
         <div class="login-card card shadow-sm">
             <div class="login-header card-header bg-primary text-white text-center">
-                <h3 class="mb-0">Acesso ao Sistema</h3>
+                <h3 class="mb-0">Criar Conta</h3>
             </div>
             <div class="login-body card-body">
                 {% if form.errors %}
                     <div class="login-error alert alert-danger" role="alert">
-                        Usuário e/ou senha inválidos. Por favor, tente novamente.
+                        Corrija os erros abaixo e tente novamente.
                     </div>
                 {% endif %}
 
                 <form method="post" class="login-form">
                     {% csrf_token %}
                     <div class="form-group mb-3">
-                        <label for="{{ form.username.id_for_label }}" class="form-label">Usuário</label>
+                        <label for="{{ form.full_name.id_for_label }}" class="form-label">Nome Completo</label>
                         <div class="input-wrapper">
-                            {{ form.username }}
+                            {{ form.full_name }}
                         </div>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="{{ form.password.id_for_label }}" class="form-label">Senha</label>
+                        <label for="{{ form.email.id_for_label }}" class="form-label">E-mail</label>
                         <div class="input-wrapper">
-                            {{ form.password }}
+                            {{ form.email }}
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                    <div class="form-group mb-3">
+                        <label for="{{ form.password1.id_for_label }}" class="form-label">Senha</label>
+                        <div class="input-wrapper">
+                            {{ form.password1 }}
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="{{ form.password2.id_for_label }}" class="form-label">Confirme a Senha</label>
+                        <div class="input-wrapper">
+                            {{ form.password2 }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
                 </form>
             </div>
             <div class="login-footer card-footer text-center">
                 <small>
-                    <a href="{% url 'password_reset' %}" class="text-decoration-none">Esqueceu sua senha?</a>
-                </small>
-                <br>
-                <small>
-                    Ainda não tem conta? <a href="#" class="text-decoration-none">Crie sua conta (em breve)</a>
+                    Já tem uma conta? <a href="{% url 'login' %}" class="text-decoration-none">Faça login</a>
                 </small>
             </div>
         </div>
