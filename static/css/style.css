@@ -57,13 +57,17 @@
         color: var(--bs-light);
     }
 }
-.btn-sm{
+
+.btn-sair {
     padding: 10px 20px; 
     font-size: 1rem;
-    &:hover{
-        color: var(--bs-light);
-    }
 }
+
+.btn-sair:hover {
+    background-color: var(--bs-dark)!important;
+}
+
+
 .table-responsive{
     border-radius: 15px;
 }
@@ -111,7 +115,7 @@ padding-bottom: 50px;
 display: flex;
 justify-content: space-between;
 align-items: center;
-flex-wrap: wrap; /* permite quebra para menu colapsado */
+flex-wrap: wrap; 
 }
 
 .navbar-toggler {
