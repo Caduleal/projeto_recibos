@@ -1,0 +1,25 @@
+# Byte-code files
+*.pyc
+__pycache__/
+
+# Environments
+.env/
+venv/
+env/
+
+# Database
+*.sqlite3
+
+# Media files
+media/
+
+# IDEs and other tools
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Django stuff
+*.log
+local_settings.py
+staticfiles/ # Collected static files

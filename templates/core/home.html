@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - {{ block.super }}{% endblock %}
+{% block content %}
+
+    <h1 class="mb-4">Olá, {{ user.username }}</h1>
+    {# ALTERADO: welcome_message não está sendo passado pela view, então comentei ou remova esta linha #}
+    {# <p>{{ welcome_message }}</p> #}
+
+    <div class="row"> {# Abertura da linha #}
+        {# Card Total de Inquilinos #}
+        <div class="col-md-3 mb-4">
+            {# ALTERADO: Link temporário para '#' #}
+            <a href="#" class="text-decoration-none text-reset">
+                <div class="card card_select text-white bg-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Total de Inquilinos</h5>
+                        {# ALTERADO: total_tenants não está sendo passado pela view, use 0 #}
+                        <p class="card-text fs-3"> 0</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {# Card Total de Imóveis #}
+        <div class="col-md-3 mb-4">
+            {# ALTERADO: Link temporário para '#' #}
+            <a href="#" class="text-decoration-none text-reset">
+                <div class="card card_select text-white bg-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Total de Imóveis</h5>
+                        {# ALTERADO: total_properties não está sendo passado pela view, use 0 #}
+                        <p class="card-text fs-3">0</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        {# Card Total de Contratos #}
+        <div class="col-md-3 mb-4">
+            {# ALTERADO: Link temporário para '#' #}
+            <a href="#" class="text-decoration-none text-reset">
+                <div class="card card_select text-white bg-info">
+                    <div class="card-body">
+                        <h5 class="card-title">Total de Contratos</h5>
+                        {# ALTERADO: total_contracts não está sendo passado pela view, use 0 #}
+                        <p class="card-text fs-3">0</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3 mb-4">
+            {# ALTERADO: Link temporário para '#' #}
+            <a href="#" class="text-decoration-none text-reset">
+                <div class="card card_select text-white bg-warning">
+                    <div class="card-body">
+                        <h5 class="card-title">Pagamentos Pendentes</h5>
+                        {# ALTERADO: pending_payments não está sendo passado pela view, use 0 #}
+                        <p class="card-text fs-3">0</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div> 
+
+
+    <p class="mt-4">Navegue pelas opções no menu acima para gerenciar seus dados.</p>
+
+{% endblock %}
