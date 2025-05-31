@@ -43,12 +43,12 @@
                 <ul class="navbar-nav">
                         {% if user.is_authenticated %}
                         <li class="nav-item">
-                            {# OPCIONAL: Adicionado span para texto de boas-vindas para estilo #}
-                            <span class="nav-link text-white me-2">Olá, {{ user.username }}!</span>
                         </li>
                         <li class="nav-item">
-                            {# JÁ ESTAVA CORRETO: link para logout padrão do Django #}
-                            <a class="btn btn-outline-light btn-sm btn-sair" href="{% url 'logout' %}">Sair</a> 
+                            <form action="{% url 'logout' %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-light btn-sm btn-sair">Sair</button>
+                            </form>
                         </li>
                     {% else %}
                         <li class="nav-item">

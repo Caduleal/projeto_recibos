@@ -64,7 +64,9 @@
 }
 
 .btn-sair:hover {
-    background-color: var(--bs-dark)!important;
+    background-color: var(--bs-light);
+    color: var(--bs-primary);
+    
 }
 
 
@@ -204,5 +206,30 @@ margin-top: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 6px;
+    box-sizing: border-box;
+}
+.password-field-group .input-group {
+    display: flex;
+    width: 100%;
+}
+
+.password-field-group .input-group .form-control {
+    flex-grow: 1;
+    min-width: 0;
+    width: 1%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.password-field-group .input-group .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    border: 1px solid #ccc;
+    border-left: none;
+    padding: 10px 12px;
+    font-size: 1rem;
+    height: 45px;
     box-sizing: border-box;
 }
