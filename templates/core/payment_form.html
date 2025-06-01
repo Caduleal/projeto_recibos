@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - {{ block.super }}{% endblock %}
+{% block content %}
+<h1 class="mb-4 text-home">{{ page_title }}</h1>
+
+    <div class="card">
+        <div class="card-body form">
+            <form method="post">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <div class="mb-3">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {% if field.help_text %}
+                            <div class="form-text text-muted">{{ field.help_text }}</div>
+                        {% endif %}
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <button type="submit" class="btn btn-primary mt-3">Salvar Pagamento</button>
+                <a href="{% url 'RentalApp:payment_list' %}" class="btn btn-secondary mt-3 ms-2">Cancelar</a>
+            </form>
+        </div>
+    </div>
+{% endblock %}

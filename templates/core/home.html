@@ -1,19 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}Dashboard - {{ block.super }}{% endblock %}
 {% block content %}
-
-    <h1 class="mb-4">Olá, {{ user.username }}</h1>
-    {# ALTERADO: welcome_message não está sendo passado pela view, então comentei ou remova esta linha #}
-    {# <p>{{ welcome_message }}</p> #}
+    
+    <h1 class="mb-4 text-home">Olá, {{ request.user.owner_profile.first_name }}</h1>
 
     <div class="row"> {# Abertura da linha #}
         {# Card Total de Inquilinos #}
         <div class="col-md-3 mb-4">
             {# ALTERADO: Link temporário para '#' #}
-            <a href="#" class="text-decoration-none text-reset">
-                <div class="card card_select text-white bg-primary">
+            <a href="{% url 'Tenant:tenant_list'%}" class="text-decoration-none text-reset">
+                <div class="card card_select text-white bg-tenants">
                     <div class="card-body">
-                        <h5 class="card-title">Total de Inquilinos</h5>
+                        <h5 class="card-title">Inquilinos</h5>
                         {# ALTERADO: total_tenants não está sendo passado pela view, use 0 #}
                         <p class="card-text fs-3"> 0</p>
                     </div>
@@ -24,10 +22,10 @@
         {# Card Total de Imóveis #}
         <div class="col-md-3 mb-4">
             {# ALTERADO: Link temporário para '#' #}
-            <a href="#" class="text-decoration-none text-reset">
-                <div class="card card_select text-white bg-success">
+            <a href="{% url 'Properties:property_list'%}" class="text-decoration-none text-reset">
+                <div class="card card_select text-white bg-properties">
                     <div class="card-body">
-                        <h5 class="card-title">Total de Imóveis</h5>
+                        <h5 class="card-title">Imóveis</h5>
                         {# ALTERADO: total_properties não está sendo passado pela view, use 0 #}
                         <p class="card-text fs-3">0</p>
                     </div>
@@ -38,10 +36,10 @@
         {# Card Total de Contratos #}
         <div class="col-md-3 mb-4">
             {# ALTERADO: Link temporário para '#' #}
-            <a href="#" class="text-decoration-none text-reset">
+            <a href="{% url 'Contracts:contract_list'%}" class="text-decoration-none text-reset">
                 <div class="card card_select text-white bg-info">
                     <div class="card-body">
-                        <h5 class="card-title">Total de Contratos</h5>
+                        <h5 class="card-title">Contratos</h5>
                         {# ALTERADO: total_contracts não está sendo passado pela view, use 0 #}
                         <p class="card-text fs-3">0</p>
                     </div>
@@ -53,7 +51,7 @@
             <a href="#" class="text-decoration-none text-reset">
                 <div class="card card_select text-white bg-warning">
                     <div class="card-body">
-                        <h5 class="card-title">Pagamentos Pendentes</h5>
+                        <h5 class="card-title">Pendentes</h5>
                         {# ALTERADO: pending_payments não está sendo passado pela view, use 0 #}
                         <p class="card-text fs-3">0</p>
                     </div>
@@ -61,8 +59,4 @@
             </a>
         </div>
     </div> 
-
-
-    <p class="mt-4">Navegue pelas opções no menu acima para gerenciar seus dados.</p>
-
 {% endblock %}

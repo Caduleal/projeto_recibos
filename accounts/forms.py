@@ -37,6 +37,7 @@ class CustomUserCreationForm(UserCreationForm):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
         user.username = self.cleaned_data['email']
+        user.first_name = self.cleaned_data['name']
 
         if commit:
             user.save()

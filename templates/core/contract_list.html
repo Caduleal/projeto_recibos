@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - {{ block.super }}{% endblock %}
+{% block content %}
+<h1 class="mb-4 text-home">{{ page_title }}</h1>
+    <a href="{% url 'Contracts:contract_create' %}" class="btn btn-primary mb-3">Adicionar Novo Contrato</a>
+    {% if contracts %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Inquilinos</th>
+                        <th>Imóvel</th>
+                        <th>Valor</th>
+                        <th>Início</th>
+                        <th>Vencimento</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contract in contracts %}
+                    <tr>
+                        <td> {{contract.tenant.name}} </td>
+                        <td> {{contract.property.address}} </td>
+                        <td> {{contract.rent_amount|floatformat:2}} </td>
+                        <td> {{contract.start_date|date:"d/m/Y"}} </td>
+                        <td> {{contract.due_day}} </td>
+                        <td> {{contract.fet_status_display}} </td>
+                        <td>
+                            <a href="{% url 'Contracts:generate_contract_pdf' pk=contract.pk %}" class="btn btn-sm btn-success" title="Gerar Contrato PDF" target="_blank">
+                                    <i class="fas fa-file-pdf"></i>
+                                <a href="{% url 'Contracts:contract_update' pk=contract.pk %}" class="btn btn-sm btn-warning" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'Contracts:contract_delete' pk=contract.pk %}" class="btn btn-sm btn-danger" title="Excluir">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p>Nenhum contrato cadastrado ainda.</p>
+    {% endif %}
+{% endblock %}

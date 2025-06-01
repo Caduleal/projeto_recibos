@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - {{ block.super }}{% endblock %}
+{% block content %}
+<h1 class="mb-4 text-home">{{ page_title }}</h1>
+
+    <div class="alert alert-danger" role="alert">
+        <p>Você tem certeza que deseja excluir o contrato entre o inquilino "<strong>{{ contract.tenant.name }}</strong>" e o imóvel "<strong>{{ contract.property.address }}</strong>"?</p>
+        <p>Esta ação não pode ser desfeita.</p>
+        {% if contract.payments.count %}
+            <p class="mt-3"><strong>Atenção:</strong> Este contrato possui {{ contract.payments.count }} pagamento(s) associado(s). A exclusão do contrato pode afetar esses registros de pagamento.</p>
+        {% endif %}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger me-2">Sim, Excluir</button>
+        {# O 'contract_list' será o nome da URL para a lista de contratos #}
+        <a href="{% url 'RentalApp:contract_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}

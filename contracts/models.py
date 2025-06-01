@@ -14,6 +14,9 @@ class RentalContract(models.Model):
     rent_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Rent Amount")
     contract_file = models.FileField(upload_to='contracts_pdf/', blank=True, null=True, verbose_name="Contract File (PDF)")
 
+    contract_text = models.TextField(blank=True, null=True, verbose_name="Cláusulas Contratuais")
+
+
     STATUS_CHOICES = [
     ('active', 'Ativo'),
     ('closed', 'Encerrado'),

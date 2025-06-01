@@ -13,9 +13,6 @@ def register_user(request):
             login(request, user)
             messages.success(request, 'Sua conta foi criada com sucesso! Por favor, complete seu perfil.')
             return redirect('accounts:complete_owner_profile')
-        else:
-            messages.error(request, 'Houve um erro no seu registo. Por favor, verifique os dados fornecidos.')
-            print(form.errors)
     else:
         form = CustomUserCreationForm()
 

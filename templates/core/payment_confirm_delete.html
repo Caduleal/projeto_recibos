@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - {{ block.super }}{% endblock %}
+{% block content %}
+    <h1 class="mb-4 text-home">{{ page_title }}</h1>
+
+    <div class="alert alert-danger" role="alert">
+        <p>Você tem certeza que deseja excluir o pagamento de <strong>R$ {{ payment.amount_paid|floatformat:2 }}</strong> referente a <strong>{{ payment.reference_period }}</strong> (Contrato: {{ payment.contract.tenant.name }} - {{ payment.contract.property.address }})?</p>
+        <p>Esta ação não pode ser desfeita.</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger me-2">Sim, Excluir</button>
+        <a href="{% url 'RentalApp:payment_list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+{% endblock %}

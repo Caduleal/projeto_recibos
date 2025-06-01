@@ -4,7 +4,8 @@
     --bs-success: #3D8361;
     --bs-info: #8ACCD5;
     --bs-light: #F6F5F5;
-    --bs-dark: #001A6E;
+    --bs-dark: #254D70;
+    --bs-darker: #0E2148;
 }
 .bg-primary{
     background-color: var(--bs-primary) !important;
@@ -17,8 +18,8 @@
     border-color: var(--bs-primary);
 }
 .btn-primary:hover {
-    background-color: #1A5B73;
-    border-color: #1A5B73;
+    background-color: var(--bs-dark);
+    border-color: var(--bs-dark);
 }
 .bg-success{
     background-color: var(--bs-success) !important;
@@ -31,63 +32,143 @@
     border-color: var(--bs-success);
 }
 .bnt-success:hover{
-    background-color: #316C4D;
-    border-color: #316C4D;
+    background-color: var(--bs-success);
+    border-color: var(--bs-success);
 }
-.bg-info{
-    background-color: #8E7DBE !important;
-}
+
 .text-info{
     color: var(--bs-light) !important;
 }
+
 .navbar-dark .navbar-nav .nav-link {
-    color: var(--bs-dark);
+    font-family: 'Ancizar Sans', sans-serif;
+    color: var(--bs-light);
+    font-size: 1.2rem;
     transition: color 0.3s ease;
 
-    &:hover {
-        color: var(--bs-light);
-    }
 }
-
+.nav-item{
+    margin-right: 8px;
+}
 .navbar-dark .navbar-brand {
     color: var(--bs-light);
     transition: color 0.3s ease;
-
-    &:hover {
-        color: var(--bs-light);
-    }
+}
+.navbar-brand {
+    font-family: 'Ancizar Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: var(--bs-light);
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
+.navbar-brand::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    height: 3px;
+    background-color: var(--bs-dark);
+    transition: width 0.3s ease;
+}
+
+
+.navbar-brand:hover::after {
+    width: 100%;
+}
+.navbar-toggler {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    padding: 8px;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    transition: filter 0.3s ease;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon,
+.navbar-toggler:focus .navbar-toggler-icon {
+    filter: brightness(1.5); 
+}
+
+.nav-link {
+    position: relative;
+    display: inline-block;
+    color: var(--bs-light); 
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: var(--bs-dark); 
+    transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+    width: 100%;
+}
 .btn-sair {
-    padding: 10px 20px; 
+    padding: 10px 24px;
     font-size: 1rem;
+    border-radius: 8px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid var(--bs-light);
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 .btn-sair:hover {
     background-color: var(--bs-light);
     color: var(--bs-primary);
-    
+    border-color: var(--bs-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
-
+.navbar-3d{
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+.navbar-3d .navbar-brand,
+.navbar-3d .nav-link, 
+.text-home{
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2)
+}
 
 .table-responsive{
     border-radius: 15px;
 }
 
 body {
-padding-top: 70px;
-background: linear-gradient(135deg, #3D90D7, #A7D5F2);
-background-attachment: fixed;
-background-repeat: no-repeat;
-background-size: cover;
-min-height: 100vh;
-padding-bottom: 50px;
+    padding-top: 80px;
+    background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png'),linear-gradient(135deg, #3D90D7, #A7D5F2);
+    background-attachment: fixed;
+    background-repeat: repeat;
+    min-height: 100vh;
+    padding-bottom: 50px;
+    font-size: 16px;
+
 }
+
 .table-responsive table {
     width: 100%;
 }
 .table-responsive tbody tr {
     height: 100px;
+}
+.text-home{
+    font-family: "Ancizar Sans", sans-serif;
+    font-weight: 600;
+    color: var(--bs-light);
 }
 
 .form{
@@ -109,39 +190,18 @@ padding-bottom: 50px;
 }
 
 .card_select:hover {
-    transform: translateY(-5px) scale(1.02);
+    transform: translateY(-2px) scale(1.02);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
-@media (max-width: 1000px) {
-.navbar .container-fluid {
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-wrap: wrap; 
+.bg-tenants{
+    background-color: var(--bs-primary);
+}
+.bg-properties{
+    background-color: var(--bs-dark);
 }
 
-.navbar-toggler {
-margin: 0;
-}
-
-.navbar-collapse {
-width: 100%;
-text-align: center;
-}
-
-.navbar-collapse .navbar-nav {
-display: flex;
-flex-direction: column;
-align-items: center;
-}
-
-.navbar-collapse .navbar-nav .nav-item {
-margin: 5px 0;
-}
-
-.navbar-collapse .navbar-nav:last-child {
-margin-top: 10px;
-}
+.bg-info{
+    background-color: var(--bs-success) !important;
 }
 
 .login-container {
@@ -154,6 +214,9 @@ margin-top: 10px;
 .login-card-wrapper {
     width: 100%;
     max-width: 400px;
+    border-radius: 12px;
+    background-color: var(--bs-light);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 .login-card {
@@ -162,11 +225,14 @@ margin-top: 10px;
 }
 
 .login-header {
-    background: #0d6efd; 
     color: white;
     padding: 1rem;
 }
-
+.header-text{
+    font-family: "Ancizar Sans", sans-serif !important;
+    font-weight: 700;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.2)
+}
 .login-body {
     padding: 1.5rem;
 }
@@ -179,7 +245,6 @@ margin-top: 10px;
 .login-form input {
     height: 45px;
 }
-
 .login-error {
     margin-bottom: 1rem;
 }
@@ -232,4 +297,59 @@ margin-top: 10px;
     font-size: 1rem;
     height: 45px;
     box-sizing: border-box;
+}
+.btn-primary {
+    padding: 10px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    border: 2px solid var(--bs-primary);
+    background-color: var(--bs-primary);
+    color: var(--bs-light);
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--bs-dark);
+    border-color: var(--bs-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+.btn-primary:active {
+    background-color: var(--bs-success) !important;
+    border-color: var(--bs-success) !important;
+    color: var(--bs-light) !important;
+    transition: none;
+}
+
+@media (max-width: 1000px) {
+    .navbar .container-fluid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    }
+
+    .navbar-toggler {
+    margin: 0;
+    }
+
+    .navbar-collapse {
+    width: 100%;
+    text-align: center;
+    }
+
+    .navbar-collapse .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+
+    .navbar-collapse .navbar-nav .nav-item {
+    margin: 5px 0;
+    }
+
+    .navbar-collapse .navbar-nav:last-child {
+    margin-top: 10px;
+    }
 }

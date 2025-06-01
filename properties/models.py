@@ -43,6 +43,12 @@ class Owner(models.Model):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def first_name(self):
+        if self.name:
+            return self.name.split(' ')[0]
+        return ''
 
     class Meta:
         verbose_name = "Proprietário" 
@@ -69,6 +75,7 @@ class Property(models.Model):
         verbose_name="CEP", 
     )
     property_type = models.CharField(max_length=50, choices=PROPERTY_TYPES, verbose_name="Tipo de Imóvel") # Label em português
+    description = models.TextField(blank=True, null=True, verbose_name="Descrição")  # Novo campo
 
     def __str__(self):
         return f"{self.property_type.capitalize()} em {self.address}, {self.city}/{self.state}"

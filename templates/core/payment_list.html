@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - {{ block.super }}{% endblock %}
+{% block content %}
+<h1 class="mb-4 text-home">{{ page_title }}</h1>
+    <a href="{% url 'rental_app:payment_create' %}" class="btn btn-primary mb-3">Registrar Novo Pagamento</a>
+
+    {% if payments %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Contrato (Inquilino / Imóvel)</th>
+                        <th>Data Pagamento</th>
+                        <th>Valor Pago</th>
+                        <th>Período Ref.</th>
+                        <th>Status</th>
+                        {# REMOVIDO: A segunda coluna "Recibo PDF" #}
+                        <th>Ações</th> 
+                </thead>
+                <tbody>
+                    {% for payment in payments %}
+                        <tr>
+                            <td>
+                                {{ payment.contract.tenant.name }} / {{ payment.contract.property.address }}
+                            </td>
+                            <td>{{ payment.payment_date|date:"d/m/Y" }}</td>
+                            <td>R$ {{ payment.amount_paid|floatformat:2 }}</td>
+                            <td>{{ payment.reference_period }}</td>
+                            <td>{{ payment.get_status_display }}</td>
+                            <td> 
+                                {% if payment.receipt_pdf %}
+                                    <a href="{{ payment.receipt_pdf.url }}" target="_blank" class="btn btn-sm btn-success me-1" title="Ver Recibo PDF">
+                                        <i class="fas fa-file-pdf"></i> 
+                                    </a>
+                                {% endif %}
+                                <a href="{% url 'RentalApp:generate_payment_receipt_pdf' pk=payment.pk %}" class="btn btn-sm btn-success me-1" title="Gerar Recibo PDF" target="_blank">
+                                    <i class="fas fa-file-pdf"></i>
+                                </a>
+                                <a href="{% url 'RentalApp:payment_update' pk=payment.pk %}" class="btn btn-sm btn-warning me-1" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'RentalApp:payment_delete' pk=payment.pk %}" class="btn btn-sm btn-danger" title="Excluir">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>Nenhum pagamento registrado ainda.</p>
+    {% endif %}
+{% endblock %}
