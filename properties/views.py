@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from .models import Property 
 from .forms import PropertyForm 
@@ -7,11 +8,19 @@ from .models import Owner
 @login_required
 
 def property_list(request):
-    owner = request.user.owner_profile   
-    properties = Property.objects.filter(owner=owner).order_by('address')
+    properties = Property.objects.none() # Start with an empty queryset
+    owner_profile_exists = False
+    try:
+        owner = Owner.objects.get(user=request.user)
+        properties = Property.objects.filter(owner=owner).order_by('address')
+        owner_profile_exists = True
+    except ObjectDoesNotExist:
+        messages.info(request, "Você não tem um perfil de proprietário. Por favor, crie um para listar seus imóveis.")
+
     context = {
         'properties': properties,
         'page_title': 'Lista de Imóveis',
+        'owner_profile_exists': owner_profile_exists, # Pass this to the template if needed
     }
     return render(request, 'core/property_list.html', context)
 

@@ -8,10 +8,9 @@
         <p>Esta ação não pode ser desfeita.</p>
     </div>
 
-    <form method="post">
+    <form action="{% url 'Payments:payment_delete' payment.id %}" method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger me-2">Sim, Excluir</button>
-        <a href="{% url 'RentalApp:payment_list' %}" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-danger">Excluir</button>
     </form>
 
 {% endblock %}

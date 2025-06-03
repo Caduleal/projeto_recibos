@@ -41,7 +41,7 @@ def tenant_create(request):
             tenant.owner = request.user
             tenant.save()
             messages.success(request, 'Inquilino cadastrado com sucesso!')
-            return redirect('Tenants:tenant_list')
+            return redirect('Tenant:tenant_list')
         else:
             messages.error(request,'Houve um erro ao cadastrar o inquilino. Verifique os dados.')
     else:
@@ -88,5 +88,9 @@ def tenant_delete(request, pk):
     }
     return render(request,'core/tenant_confirm_delete.html',context)
 
-from django.http import HttpResponse
+
+def tenant_list_ajax(request):
+    tenants = Tenant.objects.all()
+    return render(request,'core/tenant_list_settings.html',{'tenants': tenants})
+
 

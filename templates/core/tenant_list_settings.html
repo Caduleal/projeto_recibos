@@ -1,0 +1,15 @@
+{% for tenant in tenants %}
+<div class="col-md-4 mb-4">
+  <a href="{% url 'Tenant:tenant_update' tenant.pk %}" class="text-decoration-none text-dark">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ tenant.name }}</h5>
+        <p class="card-text">
+        </p>
+      </div>
+    </div>
+  </a>
+</div>
+{% empty %}
+<p class="text-muted">Nenhum inquilino encontrado.</p>
+{% endfor %}

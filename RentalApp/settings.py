@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'payments',
     'core',
     'accounts',
+    'widget_tweaks',
     ]
 
 MIDDLEWARE = [
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'RentalApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,6 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SITE_URL = 'http://127.0.0.1:8000'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

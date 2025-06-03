@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Configurações{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-home">Configurações</h2>
+<div class="container my-5">
+    <div class="row">
+        <!-- Configuração do Usuário -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Usuário</h5>
+                    <p class="card-text text-muted">Atualize o seu perfil de properietário</p>
+                        <a href="{% url 'Accounts:complete_owner_profile' %}" class="btn btn-primary btn-settings">Configurar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuração dos Inquilinos -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Inquilinos</h5>
+                    <p class="card-text text-muted">Gerencie os dados dos seus inquilinos.</p>
+                    <a href="#" class="btn btn-primary btn-settings" onclick="carregarInquilinos()">Configurar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuração dos Imóveis -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Imóveis</h5>
+                    <p class="card-text text-muted">Gerencie os dados dos imóveis cadastrados.</p>
+                    <a href="{% url 'Properties:property_list' %}" class="btn btn-primary btn-settings">Configurar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="inquilinos-container" class="row mt-4">
+    <!-- Os cards dos inquilinos vão aparecer aqui -->
+</div>
+<script>
+    function carregarInquilinos() {
+        fetch("{% url 'Tenant:tenant_list_ajax' %}")
+            .then(response => {
+                if (!response.ok) throw new Error('Erro na requisição');
+                return response.text();
+            })
+            .then(html => {
+                document.getElementById("inquilinos-container").innerHTML = html;
+            })
+            .catch(error => {
+                document.getElementById("inquilinos-container").innerHTML =
+                    "<p class='text-danger'>Erro ao carregar os dados dos inquilinos.</p>";
+                console.error(error);
+            });
+    }
+</script>
+{% endblock %}
+

@@ -15,6 +15,6 @@
         {% csrf_token %}
         <button type="submit" class="btn btn-danger me-2">Sim, Excluir</button>
         {# O 'contract_list' será o nome da URL para a lista de contratos #}
-        <a href="{% url 'RentalApp:contract_list' %}" class="btn btn-secondary">Cancelar</a>
+        <a href="{% url 'Contracts:contract_list' %}" class="btn btn-secondary">Cancelar</a>
     </form>
 {% endblock %}
